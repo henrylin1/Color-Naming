@@ -1,0 +1,22 @@
+{
+  "colors" : {
+    "generated" : {
+      "b" : 3,
+      "g" : 2,
+      "label" : "blue",
+      "r" : 1
+    },
+    "generated" : {
+      "b" : 5,
+      "g" : 4,
+      "label" : "green",
+      "r" : 3
+    },
+    "generated" : {
+      "b" : 8,
+      "g" : 7,
+      "label" : "red",
+      "r" : 6
+    }
+  }
+}

@@ -30,6 +30,8 @@ function setup() {
 	buttons.push(createButton("Purple"));
 	buttons.push(createButton("Green"));
 	buttons.push(createButton("Brown"));
+	let button = createButton("generate!");
+	button.mousePressed(generate);
 
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].mousePressed(sendData);
@@ -62,5 +64,31 @@ function sendData() {
 	}
 
 	console.log(this.html());
+}
 
+function generate() {
+	colors = [[1,2,3,"blue"], [2,3,4,"green"]];
+	for (let i = 0; i < colors.length; i++) {
+		console.log(i);
+		console.log(colors[i]);
+		sendColor(colors[i]);
+	}
+}
+
+function sendColor(col) {
+	let colorDatabase = database.ref("colors");
+	var data = {
+		r: col[0],
+		g: col[1],
+		b: col[2],
+		label: col[3]
+	}
+	let color = colorDatabase.push(data, errorCheck);
+	console.log("firebase generated key: " + color.key);
+	function errorCheck(error) {
+		if (error) {
+			console.error(error);
+		}
+	}
+	console.log(col);
 }
