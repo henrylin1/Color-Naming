@@ -16,20 +16,20 @@ function setup() {
 	database = firebase.database();
 	console.log(firebase);
 
-	createCanvas(100, 100);
+	createCanvas(100, 100).parent("#canvas");
 	r = floor(random(256));
 	g = floor(random(256));
 	b = floor(random(256));
 	background(r, g, b);
 
 	let buttons = [];
-	buttons.push(createButton("Yellow"));
-	buttons.push(createButton("Red"));
-	buttons.push(createButton("Blue"));
-	buttons.push(createButton("Orange"));
-	buttons.push(createButton("Purple"));
-	buttons.push(createButton("Green"));
-	let button = createButton("generate!");
+	buttons.push(select("#yellow"));
+	buttons.push(select("#red"));
+	buttons.push(select("#blue"));
+	buttons.push(select("#orange"));
+	buttons.push(select("#purple"));
+	buttons.push(select("#green"));
+	let button = select("#generate");
 	button.mousePressed(generate);
 
 	for (let i = 0; i < buttons.length; i++) {
@@ -109,6 +109,7 @@ function guess(r, g, b) {
 		return "Blue";
 	}
 }
+
 function generate() {
 	var colors = []
 	for (let i = 0; i < 100; i++){

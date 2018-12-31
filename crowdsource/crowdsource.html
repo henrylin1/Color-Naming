@@ -5,9 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Classifier</title>
+	<title>Color Naming</title>
 	<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
@@ -18,10 +17,10 @@
 	<a class="navbar-brand" href="../index.html">Home</a>
 	<ul class="navbar-nav mr-auto">
     	<li class="nav-item">
-        	<a class="nav-link" href="../crowdsource/crowdsource.html">Add Data</a>
+        	<a class="nav-link" href="#">Add Data</a>
     	</li>
     	<li class="nav-item">
-        	<a class="nav-link" href="#">Classify Data</a>
+        	<a class="nav-link" href="../classifier/classifier.html">Classify Data</a>
     	</li>
     </ul>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +33,15 @@
 			<br>
 			<div id="canvas"></div>
 			<br>
-			<div id="label"></div>
-			<br>
-			<div id="loss"></div>
-			<br>
-			<div id="slider1">Red   </div>
-			<div id="slider2">Green </div>
-			<div id="slider3">Blue  </div>
+			<button id="yellow" type="button" class="btn btn-primary">Yellow</button>
+			<button id="red" type="button" class="btn btn-primary">Red</button>
+			<button id="blue" type="button" class="btn btn-primary">Blue</button>
+			<button id="orange" type="button" class="btn btn-primary">Orange</button>
+			<button id="purple" type="button" class="btn btn-primary">Purple</button>
+			<button id="green" type="button" class="btn btn-primary">Green</button>
 		</div>
 	</div>
 </div>
+<button id="generate" type="button" class="btn btn-primary">Generate</button>
 </body>
 </html>

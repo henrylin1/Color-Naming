@@ -22,15 +22,15 @@ function gotData(results) {
 		outputData.colors.push(record);
 	}
 	data = outputData;
-	saveJSON(data, "colorData.json");
 }
 
 async function setup() {
-	lossP = createP("loss");
-	labelP = createP("guess");
-	rSlider = createSlider(0, 255, 255);
-	gSlider = createSlider(0, 255, 255);
-	bSlider = createSlider(0, 255, 0);
+	createCanvas(100, 100).parent("#canvas");
+	lossP = createP("loss:").parent("#loss");
+	labelP = createP("Label:").parent("#label");
+	rSlider = createSlider(0, 255, 0).parent("#slider1");
+	gSlider = createSlider(0, 255, 0).parent("#slider2");
+	bSlider = createSlider(0, 255, 0).parent("#slider3");
 	// Initialize Firebase
 	var config = {
 	apiKey: "AIzaSyCxG3ZkG_MesIAIL62EPjc9znnGevNQX4Y",
@@ -89,7 +89,7 @@ async function setup() {
 async function train() {
 	const options = {
 		epochs: 50,
-		validationSplit: 0.2,
+		validationSplit: 0.2,		
 		shuffle: true,
 		callbacks: {
 			onTrainBegin: () => console.log("training started"),
@@ -97,7 +97,7 @@ async function train() {
 			onBatchEnd: tf.nextFrame,
 			onEpochEnd: (num, log) => {
 				console.log("Epoch: " + num);
-				lossP.html("Loss: " + log.loss);
+				lossP.html("Loss: " + log.loss.toFixed(2));
 			}
 		}
 	}
@@ -111,11 +111,12 @@ async function draw() {
 	let b = bSlider.value();
 	background(r,g,b);
 
-	const x = tf.tensor2d([
-		[r/255, g/255, b/255]
-	]);
-	let results = model.predict(x);
-	let index = results.argMax(1).dataSync()[0];
-	labelP.html("Label: " + labelList[index]);
-	
+	tf.tidy( () => {
+		const x = tf.tensor2d([
+			[r/255, g/255, b/255]
+		]);
+		let results = model.predict(x);
+		let index = results.argMax(1).dataSync()[0];
+		labelP.html("Label: " + labelList[index]);
+	});
 }
